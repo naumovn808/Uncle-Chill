@@ -1,7 +1,8 @@
 import gulp from 'gulp';
 import imagemin from 'gulp-imagemin';
 import webp from 'gulp-webp';
-import svgSprite from 'gulp-svg-sprite';
+import rename from 'gulp-rename';
+import svgstore from 'gulp-svgstore';
 
 const optimizeSvg = () =>
     gulp.src('source/images/**/*.svg')
@@ -16,15 +17,11 @@ const optimizeSvg = () =>
         .pipe(gulp.dest('build/images'));
 
 const sprite = () =>
-    gulp.src('source/images/**/*.svg')
-        .pipe(svgSprite({
-            mode: {
-                symbol: {
-                    sprite: '../sprite.svg'
-                }
-            }
-        }))
-        .pipe(gulp.dest('build/images'));
+  gulp
+    .src('source/images/sprite/*.svg')
+    .pipe(svgstore({ inlineSvg: true }))
+    .pipe(rename('sprite.svg'))
+    .pipe(gulp.dest('build/images'));
 
 const createWebp = () =>
     gulp.src('source/images/**/*.{png,jpg,jpeg}')

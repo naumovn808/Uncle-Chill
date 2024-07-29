@@ -1,0 +1,78 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.header {
+  background-image: url('../images/header-bg.jpg');
+  color: white;
+  min-height: 100vh;
+}
+
+.nav {
+  padding: 70px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > a {
+    font-weight: 700;
+    font-size: 18px;
+    color: $color-default-yellow;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+
+    & > a {
+      font-weight: 500;
+      font-size: 16px;
+      color: $color-default-white;
+    }
+
+    & svg {
+      margin: 0 10px;
+    }
+  }
+
+  &__btn {
+    cursor: pointer;
+    margin: 0 100px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color-default-white;
+    border: none;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+
+    span {
+      width: 100%;
+      display: block;
+      height: 3px;
+      border-radius: 50px;
+      background-color: $color-default-black;
+    }
+    & svg {
+      position: absolute;
+      top: -64%;
+      left: -64%;
+      transform: translate(-50%, -50%);
+      animation: rotate 8s linear infinite;
+      margin: 0;
+    }
+  }
+}
+
+
