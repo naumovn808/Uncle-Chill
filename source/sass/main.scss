@@ -1,9 +1,16 @@
+// Vendor
+// ---------------------------------
+
+@import "vendor/normalize";
+
+
+// Global
+// ---------------------------------
+
+@import "variables";
+@import "mixins";
 @import "global/fonts";
-
-body {
-  font-family: 'Montserrat';
-}
-
-h1 {
-  font-family: 'DelaGothicOne';
-}
+@import "global/reboot";
+@import "global/utils";
+@import "global/container";
+  

@@ -9,6 +9,8 @@ const copySvg = () =>
     gulp.src('source/images/**/*.svg')
         .pipe(gulp.dest('build/images'));
 
+
+
 const copy = () =>
   gulp.src([
     'source/**.html',

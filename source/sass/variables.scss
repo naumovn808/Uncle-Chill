@@ -1,0 +1,39 @@
+// Colors
+// ---------------------------------
+
+// Default
+
+$color-default-black: #000000;
+$color-default-white: #ffffff;
+$color-transparent: rgba(255, 255, 255, 0);
+$color-default-yellow: #e6fb04;
+
+//fonts
+
+
+$ff-montserrat: "Montserrat", "Arial", "sans-serif";
+$ff-dela-gothic: "DelaGothicOneo", "Arial", "sans-serif";
+$font-fallback:"Arial";
+$font-generic: sans-serif;
+$my-font: $ff-montserrat, $ff-dela-gothic, $font-fallback, $font-generic;
+
+//font-sizes
+
+$fz-default: 16px;
+
+
+// Viewports
+// ---------------------------------
+
+$vp-360: 360px;
+$vp-768: 768px;
+$vp-1024: 1024px;
+$vp-1280: 1280px;
+$vp-1440: 1440px;
+$vp-1920: 1920px;
+
+// Retina
+// ---------------------------------
+
+$retina-dpi: 144dpi;
+$retina-dppx: 1.5dppx;
