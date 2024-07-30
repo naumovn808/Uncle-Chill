@@ -28,7 +28,6 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-
 @media screen and (max-width: 1299px) {
   html {
     $offset-xxxl: calc($offset * 6);
@@ -42,7 +41,6 @@ html {
     $offset-xl: calc($offset * 2);
   }
 }
-
 
 body {
   width: 100%;
@@ -58,15 +56,18 @@ a {
   line-height: 1;
 }
 
-
 img {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
   pointer-events: none;
-    max-width: 100%;
+  max-width: 100%;
 }
 
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
 
 textarea {
   resize: none;

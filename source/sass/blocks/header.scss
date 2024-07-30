@@ -7,6 +7,18 @@
   }
 }
 
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
 body::before {
   background: #0f0f0f;
   content: '';
@@ -49,8 +61,9 @@ body::before {
 
   &__logo {
     position: fixed;
-    top: calc($offset * 3);
-    left: calc($offset * 2);
+    top: 12vh; /* 20% от высоты видимой части экрана */
+    left: 8vw; /* 20% от ширины видимой части экрана */
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     width: calc(max($offset * 7, 159px));
@@ -58,6 +71,11 @@ body::before {
     transition: all 0.1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     pointer-events: auto;
     z-index: 5;
+
+    &.hidden {
+      opacity: 0;
+      transform: scale(2) translate(-50%, -50%);
+    }
 
     &-icon {
       width: 100%;
@@ -91,12 +109,11 @@ body::before {
     &-link:not(:last-child) {
       margin-right: calc($offset * 3);
       fill: $color-default-white;
-
-      & svg {
-        width: calc(max($offset * 1, 26px));
-        height: calc(max($offset * 1, 26px));
-        transition: all 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-      }
+    }
+    & svg {
+      width: calc(max($offset * 1, 26px));
+      height: calc(max($offset * 1, 26px));
+      transition: all 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
   }
 
@@ -164,6 +181,14 @@ body::before {
       animation: rotate 20s linear infinite;
       pointer-events: none;
       overflow: visible;
+
+      & svg {
+        overflow: visible;
+        fill: none;
+        fill: none;
+        stroke: none;
+        width: 100%;
+      }
     }
 
     &-circle {
@@ -176,7 +201,7 @@ body::before {
         border-radius: 50px;
         width: 60%;
         height: 6%;
-        background-color: $color-default-black;
+        background-color: #2d2d2d;
       }
 
       &::before {
@@ -188,7 +213,7 @@ body::before {
         border-radius: 50px;
         width: 60%;
         height: 6%;
-        background-color: $color-default-black;
+        background-color: #2d2d2d;
       }
     }
   }
