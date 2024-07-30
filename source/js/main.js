@@ -1,5 +1,14 @@
 // import { gsap } from 'gsap';
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   const path = document.querySelector('.header__logo-decor path');
+//   const length = path.getTotalLength();
+
+//   // Устанавливаем начальные значения stroke-dasharray и stroke-dashoffset
+//   path.style.strokeDasharray = length;
+//   path.style.strokeDashoffset = length;
+// });
+
 // window.addEventListener('DOMContentLoaded', () => {
 
 
