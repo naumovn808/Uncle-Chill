@@ -5,22 +5,32 @@
 
 $color-default-black: #000000;
 $color-default-white: #ffffff;
-$color-transparent: rgba(255, 255, 255, 0);
 $color-default-yellow: #e6fb04;
 
 //fonts
-
-
-$ff-montserrat: "Montserrat", "Arial", "sans-serif";
-$ff-dela-gothic: "DelaGothicOneo", "Arial", "sans-serif";
-$font-fallback:"Arial";
+$ff: 'Montserrat', 'Arial', 'sans-serif';
+$ff2: 'DelaGothicOneo', 'Arial', 'sans-serif';
+$font-fallback: 'Arial';
 $font-generic: sans-serif;
-$my-font: $ff-montserrat, $ff-dela-gothic, $font-fallback, $font-generic;
+$my-font: $ff, $ff2, $font-fallback, $font-generic;
+$fwEB: 900;
+$fwB: bold;
+$fwM: 500;
+$fwR: normal;
 
 //font-sizes
 
-$fz-default: 16px;
+$fz: max(1vw, 15px);
 
+//sizes
+
+$offset: max(calc(1.25 * 1vw), 15px);
+$offset-xxxl: calc($offset * 10);
+$offset-xxl: calc($offset * 8);
+$offset-xl: calc($offset * 7);
+$offset-l: calc($offset * 6);
+$offset-m: calc($offset * 5);
+$offset-s: calc($offset * 4);
 
 // Viewports
 // ---------------------------------
