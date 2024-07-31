@@ -10,33 +10,23 @@ window.addEventListener('DOMContentLoaded', () => {
     yPercent: -50,
   });
 
-  gsap.set('.sticker', {
-    rotation: 0,
-    scale: 1,
-  });
-
+  gsap.set('.sticker', { rotation: 0, scale: 1 });
   gsap.set('.main-head__decor', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__title', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__desc', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__btn', { opacity: 0, x: '-100%' });
 
   window.addEventListener('load', () => {
-
     const timeline = gsap.timeline();
 
     const decor1Img = document.querySelector('.main-head__decor1 img');
     const decor2Img = document.querySelector('.main-head__decor2 img');
 
-
     timeline
-      .set('.header__logo', { opacity: 0 })
       .to('.header__logo', {
         opacity: 1,
         duration: 2,
-        delay: 0.5,
-        onStart: () => {
-          gsap.set('.header__logo', { opacity: 1 });
-        }
+        delay: 0.5
       })
       .to('.header__logo', {
         scale: 1,
@@ -49,14 +39,13 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       .fromTo('.bg', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1 })
       .fromTo('.nav', { opacity: 0 }, { opacity: 1, duration: 1.5, delay: 0.5 })
-
-
-      .fromTo('.main-head', { opacity: 0 }, { opacity: 1, duration: 1.5, x : 0, y: 0})
+      .fromTo('.main-head', { opacity: 0 }, { opacity: 1, duration: 1.5 })
       .to('.main-head__decor', {
         opacity: 1,
         x: '-40%',
-        y: '-105%'
-
+        y: '-105%',
+        duration: 1,
+        ease: 'power2.out'
       })
       .fromTo(decor1Img, {
         top: '5%',
@@ -65,7 +54,9 @@ window.addEventListener('DOMContentLoaded', () => {
       }, {
         rotation: -70,
         top: '5%',
-        left: '-30%'
+        left: '-30%',
+        duration: 1,
+        ease: 'power2.out'
       })
       .fromTo(decor2Img, {
         top: '-5%',
@@ -75,7 +66,8 @@ window.addEventListener('DOMContentLoaded', () => {
         rotation: 40,
         top: '-10%',
         left: '-5%',
-
+        duration: 1,
+        ease: 'power2.out'
       }, '<')
       .to('.main-head__title', {
         opacity: 1,
@@ -88,16 +80,14 @@ window.addEventListener('DOMContentLoaded', () => {
         opacity: 1,
         x: '0%',
         duration: 1,
-        ease: 'power2.out',
-
+        ease: 'power2.out'
       })
       .to('.main-head__btn', {
         opacity: 1,
         x: '0%',
         duration: 1,
-        ease: 'power2.out',
+        ease: 'power2.out'
       });
-
 
     const sticker = document.querySelector('.sticker');
     const stickerTimeline = gsap.timeline({ repeat: -1, yoyo: true, ease: 'power2.inOut' });
@@ -131,17 +121,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     if (scrollTop > lastScrollTop) {
-
       gsap.to('.header', { opacity: 0, duration: 0.5, ease: 'power2.out' });
       gsap.to('.header-bg', { height: '0', duration: 0.5, ease: 'power2.out' });
     } else {
-
       gsap.to('.header', { opacity: 1, duration: 0.5, ease: 'power2.out' });
-      if (scrollTop > 0) {
-        gsap.to('.header-bg', { height: '30vh', duration: 0.5, ease: 'power2.out' });
-      } else {
-        gsap.to('.header-bg', { height: '0', duration: 0.5, ease: 'power2.out' });
-      }
+      gsap.to('.header-bg', { height: scrollTop > 0 ? '30vh' : '0', duration: 0.5, ease: 'power2.out' });
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;

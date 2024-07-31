@@ -45,7 +45,7 @@
     "node": ">=16.15.1"
   },
   "dependencies": {
-    "gsap": "^3.6.1",
+    "gsap": "^3.12.5",
     "gulp-svgstore": "^9.0.0",
     "swiper": "^6.8.4"
   }
