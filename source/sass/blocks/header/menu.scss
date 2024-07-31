@@ -1,0 +1,148 @@
+body.menu-open {
+  overflow: hidden;
+}
+
+.menu {
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: $offset-xxl;
+  color: $color-default-black;
+  z-index: 0;
+  overflow-y: auto;
+  transition: transform, 0.8s;
+  background-color: $color-default-black;
+  transform: rotate(-20deg) scaleX(2) scaleY(1.5) translateY(-150%);
+
+  &::before {
+    content: '';
+    display: block;
+    background-color: $color-default-black;
+    width: 100%;
+    height: calc($offset * 45);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: rotate(-20deg) scaleX(2) scaleY(1.5) translateY(-100%);
+    transform-origin: bottom center;
+    transition: transform 0.4s cubic-bezier(0.63, 0.47, 0.83, 0.66);
+    z-index: -1;
+  }
+}
+
+.menu__link > span {
+  z-index: 0;
+  transform: translateY(85%) rotate(-6deg);
+  transition: transform 0.3s cubic-bezier(0.42, 0, 1, 1);
+}
+
+.menu.open .menu__link > span {
+  transform: none;
+  transition: transform 1s cubic-bezier(0.42, 0, 1, 1);
+}
+.menu__item {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: calc($offset * 2.2);
+    background-color: $color-default-black;
+    position: absolute;
+    bottom: -75%;
+    z-index: 2;
+  }
+}
+
+.menu.open::before {
+  transform: rotate(0) scaleX(2) scaleY(1.5) translateY(0);
+  transition: transform 0.6s cubic-bezier(0.22, 0.51, 0.59, 0.88);
+}
+
+.menu.open {
+  transform: translateY(0);
+
+  z-index: 2;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.menu::-webkit-scrollbar {
+  display: none; 
+}
+
+.menu__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  font-size: 1.85em;
+  line-height: 1.8;
+  font-weight: $fwB;
+  margin-bottom: calc($offset * 2);
+  color: $color-default-black;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.menu.open .menu__link {
+  opacity: 1;
+}
+
+.menu__link-line {
+  background-color: $color-default-yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  white-space: nowrap;
+  text-align: left;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+
+  & span {
+    display: flex;
+    padding-right: 1.75rem;
+  }
+  & span > span {
+    padding-right: 1.75rem;
+  }
+}
+
+.menu__link:hover .menu__link-line {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu__link:focus .menu__link-line {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu__link:focus-within .menu__link-line {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu__link:focus {
+  outline: none;
+}
+
+.menu-bg.open {
+  position: fixed;
+  background-color: #000000;
+  width: 100%;
+  height: calc($offset * 8);
+  z-index: 4;
+  transition: height, 2s;
+}

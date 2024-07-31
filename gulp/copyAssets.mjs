@@ -2,12 +2,12 @@ import gulp from 'gulp';
 
 
 const copyImages = () =>
-    gulp.src('source/images/**/*.{png,jpg,jpeg,svg}')
-        .pipe(gulp.dest('build/images'));
+  gulp.src('source/images/**/*.{png,jpg,jpeg,svg}')
+    .pipe(gulp.dest('build/images'));
 
 const copySvg = () =>
-    gulp.src('source/images/**/*.svg')
-        .pipe(gulp.dest('build/images'));
+  gulp.src('source/images/**/*.svg')
+    .pipe(gulp.dest('build/images'));
 
 
 

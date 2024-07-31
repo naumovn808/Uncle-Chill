@@ -12,7 +12,6 @@
 @import "global/fonts";
 @import "global/reboot";
 @import "global/utils";
-@import "global/container";
 
 
 //blocks
@@ -20,3 +19,4 @@
 @import "blocks/header/header.scss";
 @import "blocks/header/nav.scss";
 @import "blocks/main/main.scss";
+@import "blocks/header/menu.scss";

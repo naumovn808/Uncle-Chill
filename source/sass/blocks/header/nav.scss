@@ -1,4 +1,3 @@
-
 .nav {
   &__inner {
     z-index: 10;
@@ -127,15 +126,20 @@
     z-index: 10;
     cursor: pointer;
     position: relative;
-    width: calc($offset * 2.3);
-    height: calc($offset * 2.3);
     margin-left: calc($offset * 3);
     margin-right: calc($offset * 3);
     flex-shrink: 0;
     z-index: 99;
-    border-radius: 50%;
-    background-color: $color-default-white;
     pointer-events: auto;
+    width: calc($offset * 2.3);
+    height: calc($offset * 2.3);
+    background: none;
+    transition: width, height, 1s;
+
+    &:hover .nav__btn-circle {
+      width: calc($offset * 2.1);
+      height: calc($offset * 2.1);
+    }
 
     &-circular {
       position: absolute;
@@ -149,17 +153,28 @@
       animation: rotate 20s linear infinite;
       pointer-events: none;
       overflow: visible;
+      color: $color-default-yellow;
+    }
 
-      & svg {
-        overflow: visible;
-        fill: none;
-        fill: none;
-        stroke: none;
-        width: 100%;
-      }
+    &:hover .nav__btn-circular,
+    &:focus .nav__btn-circular {
+      animation-play-state: paused;
+      color: $color-default-white;
     }
 
     &-circle {
+      display: block;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc($offset * 2.3);
+      height: calc($offset * 2.3);
+      border-radius: 50%;
+      background-color: $color-default-white;
+      pointer-events: auto;
+
       &::after {
         content: '';
         position: absolute;
@@ -168,7 +183,7 @@
         display: block;
         border-radius: 50px;
         width: 60%;
-        height: 6%;
+        height: 5%;
         background-color: #2d2d2d;
       }
 
@@ -180,7 +195,7 @@
         display: block;
         border-radius: 50px;
         width: 60%;
-        height: 6%;
+        height: 5%;
         background-color: #2d2d2d;
       }
     }
@@ -192,7 +207,6 @@
 .nav__phone:hover .nav__phone-decor path {
   stroke-dashoffset: 0;
 }
-
 
 .nav__social-link:focus .nav__social-decor path,
 .nav__social-link:focus-within .nav__social-decor path,

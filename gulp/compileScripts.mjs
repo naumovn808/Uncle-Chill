@@ -1,23 +1,20 @@
+import browserify from 'browserify';
+import babelify from 'babelify';
 import gulp from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
-import browserify from 'browserify';
-import uglify from 'gulp-uglify';
+import concat from 'gulp-concat';
 import vinylBuffer from 'vinyl-buffer';
 import vinylSourceStream from 'vinyl-source-stream';
-import babelify from 'babelify';
-import rename from 'gulp-rename';
 
-// Функция для минификации скриптов
 const compileMainMinScripts = () =>
   browserify('source/js/main.js', { debug: true })
     .transform(babelify, { presets: ['@babel/preset-env'] })
     .bundle()
     .pipe(vinylSourceStream('main.js'))
     .pipe(vinylBuffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(uglify())
-    .pipe(rename({ basename: 'main', extname: '.min.js' }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.init({ loadMaps: true })) // Инициализация sourcemaps здесь
+    .pipe(concat('main.min.js')) // Не минифицируем здесь
+    .pipe(sourcemaps.write('.')) // Запись sourcemaps в ту же папку
     .pipe(gulp.dest('build/js'));
 
 const compileMainScripts = () =>
@@ -26,9 +23,9 @@ const compileMainScripts = () =>
     .bundle()
     .pipe(vinylSourceStream('main.js'))
     .pipe(vinylBuffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(rename({ basename: 'main', extname: '.js' }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.init({ loadMaps: true })) // Инициализация sourcemaps здесь
+    .pipe(concat('main.js'))
+    .pipe(sourcemaps.write('.')) // Запись sourcemaps в ту же папку
     .pipe(gulp.dest('build/js'));
 
 export { compileMainMinScripts, compileMainScripts };

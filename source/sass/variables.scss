@@ -47,3 +47,6 @@ $vp-1920: 1920px;
 
 $retina-dpi: 144dpi;
 $retina-dppx: 1.5dppx;
+
+//transitions
+$default-transition: all 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
