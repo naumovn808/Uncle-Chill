@@ -104,6 +104,10 @@ body::before {
       stroke-dasharray: 420;
       stroke-dashoffset: 420;
       z-index: -1;
+
+    }
+
+    & path {
       transition: stroke-dashoffset 1s ease-in-out;
     }
   }
