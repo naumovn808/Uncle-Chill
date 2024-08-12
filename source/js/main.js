@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 
 window.addEventListener('DOMContentLoaded', () => {
   setupInitialStyles();
+  animateBanner()
   addLoadEventListener();
   addScrollEventListener();
   setupMenuAnimations();
@@ -17,17 +18,20 @@ function setupInitialStyles() {
     yPercent: -50,
   });
 
+
   gsap.set('.sticker', { rotation: 0, scale: 1 });
   gsap.set('.main-head__decor', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__title', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__desc', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__btn', { opacity: 0, x: '-100%' });
+  gsap.set('.main-head__decor1 img', { rotation: 5 });
+  gsap.set('.main-head__decor2 img', { rotation: -5 });
+
 }
 
 function addLoadEventListener() {
   window.addEventListener('load', () => {
     animateHeaderLogo();
-    animateMainContent();
     animateSticker();
   });
 }
@@ -42,75 +46,55 @@ function animateHeaderLogo() {
     })
     .to('.header__logo', {
       scale: 1,
-      top: '5vw',
-      left: '8vw',
+      top: '3vw',
+      left: '5vw',
       xPercent: 0,
       yPercent: 0,
       duration: 1,
       ease: 'power2.out',
       clearProps: 'transform',
     })
+}
+
+  function animateBanner() {
+    const timeline = gsap.timeline();
+    timeline
     .fromTo('.bg', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1 })
     .fromTo('.nav', { opacity: 0 }, { opacity: 1, duration: 1.5, delay: 0.5 })
     .fromTo('.main-head', { opacity: 0 }, { opacity: 1, duration: 1.5 })
+    .to('.main-head__decor1 img', {
+      rotation: -55,
+    })
+    .to('.main-head__decor2 img', {
+      rotation: 35,
+    }, '<')
     .to('.main-head__decor', {
       opacity: 1,
       x: '-40%',
-      y: '-105%',
-      duration: 1,
+      y: '-75%',
+      duration: 0.5,
       ease: 'power2.out'
     })
-    .fromTo('.main-head__images', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }) // добавлено после декора
+    .fromTo('.main-head__images', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' })
     .to('.main-head__title', {
       opacity: 1,
       x: '0%',
-      duration: 1,
       ease: 'power2.out',
+      duration: 0.5,
       delay: 0.5
     })
     .to('.main-head__desc', {
       opacity: 1,
       x: '0%',
-      duration: 1,
+      duration: 0.5,
       ease: 'power2.out'
     })
     .to('.main-head__btn', {
       opacity: 1,
       x: '0%',
-      duration: 1,
+      duration: 0.5,
       ease: 'power2.out'
-    });
-}
-
-function animateMainContent() {
-  const decor1Img = document.querySelector('.main-head__decor1 img');
-  const decor2Img = document.querySelector('.main-head__decor2 img');
-
-  if (decor1Img && decor2Img) {
-    gsap.timeline()
-      .fromTo(decor1Img, {
-        top: '5%',
-        left: '5%',
-        rotation: 5
-      }, {
-        rotation: -70,
-        top: '5%',
-        left: '-30%',
-        duration: 1,
-        ease: 'power2.out'
-      })
-      .fromTo(decor2Img, {
-        top: '-5%',
-        left: '5%',
-        rotation: 15
-      }, {
-        rotation: 40,
-        top: '-10%',
-        left: '-5%',
-        duration: 1,
-        ease: 'power2.out'
-      }, '<');
-  }
+    })
 }
 
 function animateSticker() {
@@ -130,6 +114,10 @@ function addScrollEventListener() {
   let lastScrollTop = 0;
 
   window.addEventListener('scroll', () => {
+    if (document.body.classList.contains('menu-open')) {
+      return;
+    }
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const headerOpacity = scrollTop > lastScrollTop ? 0 : 1;
     const headerBgHeight = scrollTop > lastScrollTop ? '0' : (scrollTop > 0 ? '35vh' : '0');
@@ -166,9 +154,52 @@ function setupMenuAnimations() {
   const navButton = document.querySelector('.nav__btn');
 
   if (menu && navButton) {
-    navButton.addEventListener('click', () => {
-      menu.classList.toggle('open');
+    navButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = menu.classList.toggle('open');
+      navButton.classList.toggle('active');
       document.querySelector('.menu-bg').classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+
+      if (isOpen) {
+
+        const firstFocusableElement = menu.querySelector('a, button, input, [tabindex="0"]');
+        if (firstFocusableElement) {
+          firstFocusableElement.focus();
+        }
+
+        menu.addEventListener('keydown', trapFocus);
+      } else {
+
+        navButton.focus();
+
+        menu.removeEventListener('keydown', trapFocus);
+      }
     });
+  }
+
+  function trapFocus(e) {
+    const focusableElements = menu.querySelectorAll('a, button, input, [tabindex="0"]');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+
+    if (e.key === 'Escape') {
+      navButton.click();
+    }
   }
 }

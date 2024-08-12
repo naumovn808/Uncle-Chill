@@ -3,6 +3,7 @@ body.menu-open {
 }
 
 .menu {
+  display: none;
   overflow-x: hidden;
   position: fixed;
   top: 0;
@@ -30,7 +31,6 @@ body.menu-open {
     transform: rotate(-20deg) scaleX(2) scaleY(1.5) translateY(-100%);
     transform-origin: bottom center;
     transition: transform 0.4s cubic-bezier(0.63, 0.47, 0.83, 0.66);
-    z-index: -1;
   }
 }
 
@@ -66,7 +66,7 @@ body.menu-open {
 
 .menu.open {
   transform: translateY(0);
-
+  display: block;
   z-index: 2;
   overflow: scroll;
   scrollbar-width: none;
@@ -74,7 +74,7 @@ body.menu-open {
 }
 
 .menu::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 .menu__link {

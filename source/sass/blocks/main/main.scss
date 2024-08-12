@@ -77,8 +77,8 @@
 
   &__decor {
     position: absolute;
-    top: 100%;
-    right: -50%;
+    top: 80%;
+    right: -45%;
     transform: translateY(-80%) rotate(265deg) translateY(-45%);
     width: calc($offset * 20);
     height: calc($offset * 20);
@@ -140,9 +140,10 @@
 }
 
 .main-head__decor1 img {
-  transform: rotate(-70deg);
+  transform: rotate(-55deg);
+  transform-origin: 50% 80%;
   position: absolute;
-  top: 5%;
+  top: 0%;
   left: 0;
   width: 96%;
   height: 96%;
@@ -153,16 +154,22 @@
 }
 
 .main-head__decor2 img {
+  transform: rotate(35deg);
+  transform-origin: 50% 80%;
   z-index: 1;
-  transform: rotate(30deg);
   position: absolute;
-  top: -10%;
-  left: 30%;
+  top: 0;
+  left: -8%;
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
   transition: all 1s;
+}
+
+.main-head__decor1 img,
+.main-head__decor2 img {
+  transition: all 1s ease-in-out;
 }
 
 .sticker {

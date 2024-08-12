@@ -157,8 +157,7 @@
     }
 
     &:hover .nav__btn-circular,
-    &:focus .nav__btn-circular {
-      animation-play-state: paused;
+    &:focus-visible .nav__btn-circular {
       color: $color-default-white;
     }
 
@@ -174,6 +173,7 @@
       border-radius: 50%;
       background-color: $color-default-white;
       pointer-events: auto;
+      transition: transform, width, 0.5s;
 
       &::after {
         content: '';
@@ -185,18 +185,20 @@
         width: 60%;
         height: 5%;
         background-color: #2d2d2d;
+        transition: transform 0.5s ease;
       }
 
       &::before {
         content: '';
         position: absolute;
-        bottom: 38%;
+        bottom: 39%;
         left: 20%;
         display: block;
         border-radius: 50px;
         width: 60%;
         height: 5%;
         background-color: #2d2d2d;
+        transition: transform 0.5s ease;
       }
     }
   }
@@ -218,4 +220,23 @@
 .nav__link:focus-within .nav__link-decor path,
 .nav__link:hover .nav__link-decor path {
   stroke-dashoffset: 0;
+}
+
+.nav__btn.active > .nav__btn-circle {
+  &::after {
+    transform: rotate(-45deg);
+    left: 25%;
+    top: 48%;
+    width: 50%;
+  }
+  &::before {
+    left: 25%;
+    transform: rotate(45deg);
+    bottom: 48%;
+    width: 50%;
+  }
+}
+
+.nav__btn.active .nav__btn-circular {
+  color: $color-default-white;
 }
