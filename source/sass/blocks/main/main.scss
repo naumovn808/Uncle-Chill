@@ -28,6 +28,7 @@
     text-transform: uppercase;
     font-size: 3.6em;
     line-height: 1.2;
+    color: $color-default-white;
 
     & span {
       color: $color-default-yellow;
@@ -52,7 +53,7 @@
   }
 
   &__btn {
-    color: $color-default-white;
+    color: $color-default-black;
     background-color: $color-default-yellow;
     position: relative;
     text-transform: uppercase;
@@ -72,7 +73,6 @@
     text-transform: uppercase;
     color: $color-default-yellow;
     border-radius: 0.5rem;
-    // transform: translateX(-100px);
   }
 
   &__decor {
@@ -187,9 +187,26 @@
   object-fit: contain;
   z-index: 8;
   position: absolute;
-  left: -16%;
-  bottom: -16%;
-  transform: rotate(-20deg);
-  width: max(12vw, 150px);
-  height: max(8vw, 60px);
+  left: calc(0px - max(2vw, 50px));
+  bottom: calc(0px - max(2vw, 60px));
+  transform-origin: left top;
+  transform: rotateX(-90deg);
+  // transform: rotateX(-20deg);
+  // width: max(12vw, 150px);
+  // height: max(8vw, 60px);
+  // transform: rotate(-20deg);
+}
+
+.main-head__btn::before {
+  content: '';
+  display: block;
+  background-image: url('/images/advert-arrow.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: -35%;
+  top: 0;
+  width: calc($offset * 3);
+  height: calc($offset * 3);
 }

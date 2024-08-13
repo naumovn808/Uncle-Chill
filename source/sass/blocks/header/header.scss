@@ -71,7 +71,7 @@ body::before {
     position: fixed;
     top: calc($offset * 3);
     left: calc($offset * 5);
-    transform: scale(1);
+    transform: scale(0.8);
     display: flex;
     align-items: center;
     width: calc(max($offset * 7, 159px));
@@ -84,8 +84,6 @@ body::before {
       width: 100%;
       height: 100%;
       fill: $color-default-white;
-      object-fit: contain;
-      transition: fill 0.3s ease;
     }
 
     &-decor {
@@ -111,4 +109,48 @@ body::before {
 .header__logo:focus-within .header__logo-decor path,
 .header__logo:hover .header__logo-decor path {
   stroke-dashoffset: 0;
+}
+
+.header.open .header__logo svg:not(.header__logo-decor) {
+  fill: $color-default-black;
+}
+
+.header.open .nav__phone {
+  color: $color-default-black;
+}
+
+.header.open .nav__phone-decor {
+  stroke: $color-default-black;
+  transform: scale(0.5);
+  left: 0;
+  top: -40%;
+}
+
+.header.open .nav__social-link svg:not(.nav__social-decor) {
+  fill: $color-default-black;
+}
+
+.header.open .nav__link {
+  color: $color-default-black;
+}
+
+.header.open .header__logo-decor {
+  transform: scale(0.5);
+  left: 0;
+  top: -40%;
+  stroke: $color-default-black;
+}
+
+.header.open .nav__social-decor {
+  stroke: $color-default-black;
+}
+
+.header.open .nav__link-decor {
+  stroke: $color-default-black;
+}
+
+
+.header-bg.open{
+  background-color: $color-default-white;
+  height: 9vw;
 }

@@ -35,11 +35,12 @@
     line-height: 1.2;
     color: $color-default-black;
     margin: 0;
-    margin-bottom: calc($offset * 2);
+    margin-bottom: calc($offset * 5);
   }
 
   &__wrapper {
     padding: $offset-xl $offset-xxxl $offset-xxl;
+    overflow-x: hidden;
   }
 
   &__list {

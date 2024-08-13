@@ -6,26 +6,29 @@ import concat from 'gulp-concat';
 import vinylBuffer from 'vinyl-buffer';
 import vinylSourceStream from 'vinyl-source-stream';
 
-const compileMainMinScripts = () =>
-  browserify('source/js/main.js', { debug: true })
+const compileMainMinScripts = () => {
+  console.log('Compiling main.min.js...');
+  return browserify('source/js/main.js', { debug: true, cache: {}, packageCache: {} })
     .transform(babelify, { presets: ['@babel/preset-env'] })
     .bundle()
     .pipe(vinylSourceStream('main.js'))
     .pipe(vinylBuffer())
-    .pipe(sourcemaps.init({ loadMaps: true })) // Инициализация sourcemaps здесь
-    .pipe(concat('main.min.js')) // Не минифицируем здесь
-    .pipe(sourcemaps.write('.')) // Запись sourcemaps в ту же папку
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(concat('main.min.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('build/js'));
+};
 
-const compileMainScripts = () =>
-  browserify('source/js/main.js', { debug: true })
+const compileMainScripts = () => {
+  console.log('Compiling main.js...');
+  return browserify('source/js/main.js', { debug: true, cache: {}, packageCache: {} })
     .transform(babelify, { presets: ['@babel/preset-env'] })
     .bundle()
     .pipe(vinylSourceStream('main.js'))
     .pipe(vinylBuffer())
-    .pipe(sourcemaps.init({ loadMaps: true })) // Инициализация sourcemaps здесь
+    .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(concat('main.js'))
-    .pipe(sourcemaps.write('.')) // Запись sourcemaps в ту же папку
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('build/js'));
-
+};
 export { compileMainMinScripts, compileMainScripts };

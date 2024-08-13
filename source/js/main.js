@@ -26,7 +26,6 @@ function setupInitialStyles() {
   gsap.set('.main-head__btn', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__decor1 img', { rotation: 5 });
   gsap.set('.main-head__decor2 img', { rotation: -5 });
-
 }
 
 function addLoadEventListener() {
@@ -56,9 +55,9 @@ function animateHeaderLogo() {
     })
 }
 
-  function animateBanner() {
-    const timeline = gsap.timeline();
-    timeline
+function animateBanner() {
+  const timeline = gsap.timeline();
+  timeline
     .fromTo('.bg', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1 })
     .fromTo('.nav', { opacity: 0 }, { opacity: 1, duration: 1.5, delay: 0.5 })
     .fromTo('.main-head', { opacity: 0 }, { opacity: 1, duration: 1.5 })
@@ -75,7 +74,10 @@ function animateHeaderLogo() {
       duration: 0.5,
       ease: 'power2.out'
     })
-    .fromTo('.main-head__images', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' })
+    .fromTo('.main-head__image-bg', { opacity: 0 }, { opacity: 1, duration: 2, delay: 1, ease: 'power2.out' })
+    .fromTo('.main-head__image-over', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' })
+    .to('.art', { rotateX: -20, rotate: -20, duration: 1, ease: 'power2.out' })
+
     .to('.main-head__title', {
       opacity: 1,
       x: '0%',
@@ -112,20 +114,49 @@ function animateSticker() {
 
 function addScrollEventListener() {
   let lastScrollTop = 0;
+  let advantagesAnimatedIn = false;
+  let advantagesAnimatedOut = false;
 
   window.addEventListener('scroll', () => {
-    if (document.body.classList.contains('menu-open')) {
-      return;
+
+    if (!document.querySelector('.nav__btn').classList.contains('active')) {
+
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const headerOpacity = scrollTop > lastScrollTop ? 0 : 1;
+      const headerBgHeight = scrollTop > lastScrollTop ? '0' : (scrollTop > 0 ? '10vw' : '0');
+
+      gsap.to('.header', { opacity: headerOpacity, duration: 0.5, ease: 'power2.out' });
+      gsap.to('.header-bg', { height: headerBgHeight, duration: 0.5, ease: 'power2.out' });
+
+      lastScrollTop = Math.max(scrollTop, 0);
+
+      const advantagesOffsetTop = document.querySelector('.advantages').offsetTop * 0.8;
+
+
+      if (scrollTop > advantagesOffsetTop && !advantagesAnimatedIn) {
+        gsap.fromTo('.advantages__title',
+          { opacity: 0, y: '100%' },
+          { opacity: 1, y: '0%', ease: 'power2.out', duration: 2 }
+        );
+        gsap.fromTo('.advantages__item',
+          { opacity: 0, x: '50%' },
+          { opacity: 1, x: '0%', ease: 'power2.out', duration: 2, stagger: 0.3 }
+        );
+        advantagesAnimatedIn = true;
+        advantagesAnimatedOut = false;
+      }
+
+      if (scrollTop <= advantagesOffsetTop && !advantagesAnimatedOut) {
+        gsap.to('.advantages__title',
+          { opacity: 0, y: '100%', duration: 2, ease: 'power2.out' }
+        );
+        gsap.to('.advantages__item',
+          { opacity: 0, x: '50%', ease: 'power2.out', duration: 2, stagger: 0.3 }
+        );
+        advantagesAnimatedIn = false;
+        advantagesAnimatedOut = true;
+      }
     }
-
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const headerOpacity = scrollTop > lastScrollTop ? 0 : 1;
-    const headerBgHeight = scrollTop > lastScrollTop ? '0' : (scrollTop > 0 ? '35vh' : '0');
-
-    gsap.to('.header', { opacity: headerOpacity, duration: 0.5, ease: 'power2.out' });
-    gsap.to('.header-bg', { height: headerBgHeight, duration: 0.5, ease: 'power2.out' });
-
-    lastScrollTop = Math.max(scrollTop, 0);
   });
 }
 
@@ -150,56 +181,60 @@ function setupMenuAnimations() {
     link.addEventListener('blur', () => textAnimation.pause());
   });
 
-  const menu = document.querySelector('.menu');
-  const navButton = document.querySelector('.nav__btn');
+}
 
-  if (menu && navButton) {
-    navButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isOpen = menu.classList.toggle('open');
-      navButton.classList.toggle('active');
-      document.querySelector('.menu-bg').classList.toggle('open');
-      document.body.classList.toggle('menu-open');
+const menu = document.querySelector('.menu');
+const navButton = document.querySelector('.nav__btn');
 
-      if (isOpen) {
+if (menu && navButton) {
+  navButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isOpen = menu.classList.toggle('open');
+    navButton.classList.toggle('active');
+    document.querySelector('body').classList.toggle('open');
+    document.querySelector('.header').classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+    document.querySelector('.header-bg').classList.toggle('open');
+    gsap.to('.header-bg', { opacity: 1, delay: 1 });
+    document.querySelector('.menu__inner').classList.toggle('open');
 
-        const firstFocusableElement = menu.querySelector('a, button, input, [tabindex="0"]');
-        if (firstFocusableElement) {
-          firstFocusableElement.focus();
-        }
+    if (isOpen) {
 
-        menu.addEventListener('keydown', trapFocus);
-      } else {
+      menu.addEventListener('keydown', trapFocus);
 
-        navButton.focus();
+    } else {
 
-        menu.removeEventListener('keydown', trapFocus);
+      navButton.focus();
+
+      menu.removeEventListener('keydown', trapFocus);
+    }
+  });
+}
+
+function trapFocus(e) {
+  const focusableElements = menu.querySelectorAll('a, button, input, [tabindex="0"]');
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (e.key === 'Tab') {
+
+    if (e.shiftKey) {
+
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
       }
-    });
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
   }
 
-  function trapFocus(e) {
-    const focusableElements = menu.querySelectorAll('a, button, input, [tabindex="0"]');
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-
-    if (e.key === 'Tab') {
-      if (e.shiftKey) {
-
-        if (document.activeElement === firstElement) {
-          e.preventDefault();
-          lastElement.focus();
-        }
-      } else {
-        if (document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement.focus();
-        }
-      }
-    }
-
-    if (e.key === 'Escape') {
-      navButton.click();
-    }
+  if (e.key === 'Escape') {
+    navButton.click();
   }
 }
+
+

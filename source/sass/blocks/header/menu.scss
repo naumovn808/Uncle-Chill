@@ -3,7 +3,6 @@ body.menu-open {
 }
 
 .menu {
-  display: none;
   overflow-x: hidden;
   position: fixed;
   top: 0;
@@ -15,15 +14,15 @@ body.menu-open {
   z-index: 0;
   overflow-y: auto;
   transition: transform, 0.8s;
-  background-color: $color-default-black;
+  background-color: $color-default-white;
   transform: rotate(-20deg) scaleX(2) scaleY(1.5) translateY(-150%);
 
   &::before {
     content: '';
     display: block;
-    background-color: $color-default-black;
+    background-color: $color-default-white;
     width: 100%;
-    height: calc($offset * 45);
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -31,7 +30,12 @@ body.menu-open {
     transform: rotate(-20deg) scaleX(2) scaleY(1.5) translateY(-100%);
     transform-origin: bottom center;
     transition: transform 0.4s cubic-bezier(0.63, 0.47, 0.83, 0.66);
+    z-index: -1;
   }
+}
+
+.menu__inner {
+  margin: 0;
 }
 
 .menu__link > span {
@@ -44,6 +48,7 @@ body.menu-open {
   transform: none;
   transition: transform 1s cubic-bezier(0.42, 0, 1, 1);
 }
+
 .menu__item {
   position: relative;
 
@@ -51,12 +56,16 @@ body.menu-open {
     content: '';
     display: block;
     width: 100%;
-    height: calc($offset * 2.2);
-    background-color: $color-default-black;
+    height: calc($offset * 1.8);
+    background-color: $color-default-white;
     position: absolute;
-    bottom: -75%;
-    z-index: 2;
+    top: 80%;
+    z-index: 1;
   }
+}
+
+.menu__inner.open .menu__item::before {
+  display: none;
 }
 
 .menu.open::before {
@@ -66,7 +75,6 @@ body.menu-open {
 
 .menu.open {
   transform: translateY(0);
-  display: block;
   z-index: 2;
   overflow: scroll;
   scrollbar-width: none;
@@ -84,12 +92,13 @@ body.menu-open {
   position: relative;
   width: 100%;
   font-size: 1.85em;
-  line-height: 1.8;
+  line-height: 1.5;
   font-weight: $fwB;
-  margin-bottom: calc($offset * 2);
+  margin-bottom: calc($offset * 1);
   color: $color-default-black;
   text-transform: uppercase;
   opacity: 0;
+  z-index: 0;
 }
 
 .menu.open .menu__link {
@@ -103,7 +112,7 @@ body.menu-open {
   left: 0;
   bottom: 0;
   right: 0;
-
+  z-index: 2;
   white-space: nowrap;
   text-align: left;
   overflow: hidden;
@@ -140,9 +149,24 @@ body.menu-open {
 
 .menu-bg.open {
   position: fixed;
-  background-color: #000000;
+  background-color: $color-default-white;
   width: 100%;
   height: calc($offset * 8);
   z-index: 4;
-  transition: height, 2s;
+}
+
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc($offset * 1) calc($offset * 2);
+}
+
+.menu-footer__col {
+  font-size: calc(max(0.85em, 12px));
+  color: $color-default-black;
+}
+
+body.open {
+  overflow: hidden;
 }
