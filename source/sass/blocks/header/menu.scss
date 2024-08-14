@@ -167,6 +167,143 @@ body.menu-open {
   color: $color-default-black;
 }
 
-body.open {
-  overflow: hidden;
-}
+// .development,.footer-development {
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     flex-shrink: 0;
+//     width: calc(max((var(--offset) * 1.5),30px));
+//     height: calc(max((var(--offset) * 1.75),35px));
+//     fill: var(--c3);
+//     stroke: var(--c3);
+//     stroke-linecap: round;
+//     transition: .5s;
+//     transition-delay: .6s;
+//     overflow: hidden;
+//     z-index: 1
+// }
+
+// .development::before,.footer-development::before {
+//     content: attr(data-title);
+//     position: absolute;
+//     top: 55%;
+//     right: calc(100% + (var(--offset) * .5));
+//     transform: translateY(-50%) translateX(20px);
+//     opacity: 0;
+//     text-transform: uppercase;
+//     font-weight: var(--fwB);
+//     text-align: right;
+//     font-size: .75em;
+//     line-height: 1.6;
+//     color: var(--c1);
+//     pointer-events: none
+// }
+
+// .development svg,.footer-development svg {
+//     width: calc(max((var(--offset) * 3),60px));
+//     height: auto;
+//     opacity: 1;
+//     transform: none;
+//     top: auto;
+//     left: auto;
+//     stroke-linecap: round
+// }
+
+// .development .st0,.footer-development .st0 {
+//     stroke-width: 12;
+//     stroke-linejoin: round;
+//     stroke-miterlimit: 10;
+//     margin-left: auto;
+//     -webkit-animation: st0 2s linear 0s infinite normal;
+//     animation: st0 2s linear 0s infinite normal
+// }
+
+// .development .st01,.footer-development .st01 {
+//     stroke-width: 0;
+//     -webkit-animation: none;
+//     animation: none
+// }
+
+// .development .st,.footer-development .st {
+//     stroke-width: 0;
+//     stroke-linejoin: bevel;
+//     opacity: 0;
+//     transition: .5s
+// }
+
+// .development .st1,.footer-development .st1 {
+//     transition-delay: .3s
+// }
+
+// .development .st2,.footer-development .st2 {
+//     transition-delay: .2s
+// }
+
+// .development .st3,.footer-development .st3 {
+//     transition-delay: .1s
+// }
+
+// .development:focus,.development:focus-within,.development:hover,.footer-development:focus,.footer-development:focus-within,.footer-development:hover {
+//     width: calc(max((var(--offset) * 3),60px));
+//     transition-delay: 0s;
+//     overflow: visible
+// }
+
+// .development:focus-within::before,.development:focus::before,.development:hover::before,.footer-development:focus-within::before,.footer-development:focus::before,.footer-development:hover::before {
+//     transform: translateY(-50%);
+//     opacity: 1;
+//     transition: all .3s cubic-bezier(.45,.05,.55,.95) .6s
+// }
+
+// .development:focus .st,.development:focus-within .st,.development:hover .st,.footer-development:focus .st,.footer-development:focus-within .st,.footer-development:hover .st {
+//     opacity: 1;
+//     transition-delay: .4s
+// }
+
+// .development:focus .st2,.development:focus-within .st2,.development:hover .st2,.footer-development:focus .st2,.footer-development:focus-within .st2,.footer-development:hover .st2 {
+//     transition-delay: .5s
+// }
+
+// .development:focus .st3,.development:focus-within .st3,.development:hover .st3,.footer-development:focus .st3,.footer-development:focus-within .st3,.footer-development:hover .st3 {
+//     transition-delay: .6s
+// }
+
+// .footer-development {
+//     position: relative
+// }
+
+// @media screen and (max-width: 1299px) {
+//     .footer-development {
+//         position:absolute;
+//         right: calc(var(--offset) * 7.5);
+//         bottom: calc(var(--offset) * 2)
+//     }
+// }
+
+// @media screen and (max-width: 768px) {
+//     .footer-development {
+//         right:auto
+//     }
+// }
+
+// .footer-development::before {
+//     left: calc(100% + (var(--offset) * .8));
+//     right: auto;
+//     transform: translateY(-50%) translateX(-20px);
+//     text-align: left;
+//     color: var(--c3)
+// }
+
+// .footer-development:focus .footer-development__decor,.footer-development:focus-within .footer-development__decor,.footer-development:hover .footer-development__decor {
+//     stroke-dashoffset: 0;
+//     transition-duration: .8s
+// }
+
+// .footer-list,.footer-menu {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     list-style: none;
+//     margin: 0;
+//     padding: 0
+// }

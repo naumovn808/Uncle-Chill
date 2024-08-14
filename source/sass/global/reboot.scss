@@ -48,6 +48,10 @@ body {
   background-color: $color-default-white;
 }
 
+body.open {
+  overflow: hidden;
+}
+
 a {
   color: $color-default-black;
   text-decoration: none;

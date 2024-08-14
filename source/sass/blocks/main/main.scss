@@ -191,10 +191,8 @@
   bottom: calc(0px - max(2vw, 60px));
   transform-origin: left top;
   transform: rotateX(-90deg);
-  // transform: rotateX(-20deg);
-  // width: max(12vw, 150px);
-  // height: max(8vw, 60px);
-  // transform: rotate(-20deg);
+  width: calc(max(8vw, 150px));
+  height: calc(max(5vw, 60px));
 }
 
 .main-head__btn::before {
