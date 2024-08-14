@@ -1,5 +1,10 @@
 import gulp from 'gulp';
+import del from 'del';
+import { compileHtml } from './compileHTML.mjs';
 
+const cleanComponents = () => {
+  return del('build/components');
+};
 
 const copyImages = () =>
   gulp.src('source/images/**/*.{png,jpg,jpeg,svg}')
@@ -9,18 +14,13 @@ const copySvg = () =>
   gulp.src('source/images/**/*.svg')
     .pipe(gulp.dest('build/images'));
 
+const copy = gulp.series(
+  gulp.parallel(
+    copyImages,
+    copySvg,
+    compileHtml
+  ),
+  cleanComponents 
+);
 
-
-const copy = () =>
-  gulp.src([
-    'source/**.html',
-    'source/fonts/**',
-    'source/images/**',
-    'source/favicon.ico',
-    'source/manifest.json'
-  ], {
-    base: 'source',
-  })
-    .pipe(gulp.dest('build'));
-
-export { copy, copyImages, copySvg };
+export { copy };

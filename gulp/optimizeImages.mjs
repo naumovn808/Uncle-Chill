@@ -1,27 +1,23 @@
 import gulp from 'gulp';
 import imagemin from 'gulp-imagemin';
 import webp from 'gulp-webp';
-import rename from 'gulp-rename';
 import svgstore from 'gulp-svgstore';
+import cheerio from 'gulp-cheerio';
+import rename from 'gulp-rename';
 
-const optimizeSvg = () =>
-  gulp.src('source/images/**/*.svg')
-    .pipe(imagemin([
-      imagemin.svgo({
-        plugins: [
-          { removeViewBox: false },
-          { cleanupIDs: false }
-        ]
-      })
-    ]))
-    .pipe(gulp.dest('build/images'));
-
-const sprite = () =>
-  gulp
-    .src('source/images/sprite/*.svg')
+const createSprite = () => {
+  return gulp.src('source/images/sprite/*.svg')
     .pipe(svgstore({ inlineSvg: true }))
-    .pipe(rename('sprite.svg'))
-    .pipe(gulp.dest('build/images'));
+    .pipe(cheerio({
+      run: ($) => {
+        $('svg').attr('style', 'display:none');
+      },
+      parserOptions: { xmlMode: true }
+    }))
+    .pipe(rename('sprite.html'))
+    .pipe(gulp.dest('source/components'));
+};
+
 
 const createWebp = () =>
   gulp.src('source/images/**/*.{png,jpg,jpeg}')
@@ -42,4 +38,4 @@ const optimizeJpg = () =>
     ]))
     .pipe(gulp.dest('build/images'));
 
-export { optimizeSvg, sprite, createWebp, optimizePng, optimizeJpg };
+export { createSprite, createWebp, optimizePng, optimizeJpg };
