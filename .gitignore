@@ -5,7 +5,6 @@ yarn-error.log
 
 # Gulp
 build/
-gulpfile.js
 
 # Sass/CSS
 .sass-cache/
