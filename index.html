@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Uncle Chill</title>
-      <link rel="icon" href="./favicon.ico">
-      <link rel="icon" href="./images/favicons/favicon.svg" type="image/svg+xml">
-      <link rel="apple-touch-icon" href="./images/favicons/apple.png">
-      <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
-      <link rel="preload" href="./fonts/Montserrat-Bold.woff2" as="font"
-        type="font/woff2" crossorigin="anonymous">
-      <link rel="preload" href="./fonts/Montserrat-Medium.woff2" as="font"
-        type="font/woff2" crossorigin="anonymous">
-      <link rel="preload" href="./fonts/Montserrat-Regular.woff2" as="font"
-        type="font/woff2" crossorigin="anonymous">
-      <link rel="preload" href="./fonts/DelaGothicOne-Regular.woff2" as="font"
-        type="font/woff2" crossorigin="anonymous">
-      <link rel="stylesheet" href="css/style.min.css">
-    </head>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+      content="барбершоп в Ташкенте, Barbershop Дядя Chill.">
+    <meta name="keywords" content="барбершоп в Ташкенте, Barbershop Дядя Chill">
+    <meta property="og:url" content="unclechill.uz">
+    <meta property="og:site_name" content="unclechill.uz">
+    <meta property="og:title" content="Барбершоп">
+    <meta property="og:description"
+      content="барбершоп в Ташкенте, Barbershop Дядя Chill">
+    <meta property="og:image" content="">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0f0c0c">
+    <meta name="robots" content="max-image-preview:large">
+    <title>Uncle Chill</title>
+    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" href="./images/favicons/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./images/favicons/apple.png">
+    <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
+    <link rel="preload" href="./fonts/Montserrat-Bold.woff2" as="font"
+      type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Montserrat-Medium.woff2" as="font"
+      type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Montserrat-Regular.woff2" as="font"
+      type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/DelaGothicOne-Regular.woff2" as="font"
+      type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.min.css">
+  </head>
+  
+  <head>
 
   <body>
 
@@ -80,7 +96,7 @@
         <ul class="menu__inner">
           <li class="menu__item">
       
-            <a href="#" class="menu__link" autfocus tabindex="1">
+            <a href="#" class="menu__link">
               <span>барбершоп</span>
               <div class="menu__link-line">
                 <span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span></span><span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span><span>Барбершоп</span></span>
@@ -273,7 +289,7 @@
             <button class="nav__btn" type="button" aria-label="меню">
               <svg class="nav__btn-circular" width="116" height="116">
                 <use
-                  xlink:href="./images/sprite.svg#menu-circle"></use>
+                  xlink:href="#menu-circle"></use>
               </svg>
               <span class="nav__btn-circle"></span>
             </button>
@@ -354,7 +370,7 @@
               Если хочешь эффект “ВАУ!!!”
             </div>
         
-            <button class="main-head__btn" type="button">
+            <button tabindex="1" class="main-head__btn" type="button">
               Хочу к вам
             </button>
         
@@ -445,7 +461,7 @@
                 <span class="advantages__item-count">3</span>
                 <div class="advantages__item-content">
                   <b class="advantages__item-name">ДЯДЯЧИЛЛ ОБО ВСЕМ
-                    ПОЗАБОТИЛСЯ</b>http://localhost:3000/#
+                    ПОЗАБОТИЛСЯ</b>
                   <p>Есть удобная парковка для вашей машины, байка и ботинка</p>
                 </div>
               </li>
@@ -453,6 +469,194 @@
           </div>
         
         </section>
+
+        <section class="price">
+          <div class="price__sticky">
+            <div class="price-scroll">
+        
+              <div class="price-row">
+                <div class="price-image">
+                  <div class="price-img price-img-one">
+                    <img src="/images/price-one.png" alt="art-image">
+                  </div>
+                </div>
+                <div class="price-inner">
+                  <div class="price-head">
+        
+                    <h3 class="price-title price-title">Услуги и цены</h3>
+        
+                    <div class="price-head__desc">
+                      <div class="price-texture">
+                        <picture>
+                          <source srcset="./images/price-texture.webp">
+                          <img src="./images/price-texture.jpg" width="470"
+                            alt="Услуги и цены">
+                        </picture>
+                      </div>
+                      <span><b>Первое</b> посещение <b>20%</b> скидка</span>
+                    </div>
+                  </div>
+        
+                  <div class="price-wrapper price-1">
+        
+                    <div class="price-content ">
+                      <div class="price-content__texture">
+                        <picture>
+                          <source
+                            srcset="/images/price-content-texture.webp">
+                          <img
+                            src="/images/price-content-texture.jpg"
+                            width="1050" alt />
+                        </picture>
+                      </div>
+                      <div class="price-list">
+                        <h2 class="price-list__title">ОБЩИЙ ЗАЛ</h2>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка</p>
+                          <span>150 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка под машинку</p>
+                          <span>100 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Моделирование усов и бороды</p>
+                          <span>90 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка и моделирование бороды</p>
+                          <span>220 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка и королевское бритьё</p>
+                          <span>220 000</span>
+                        </div>
+                        <button class="price-list__btn"
+                          aria-label="посмотреть все услуги">ВСЕ УСЛУГИ</button>
+                      </div>
+                      <img class="price-stick" src="/images/price-stick-one.png"
+                        alt="космическая прическа">
+                    </div>
+        
+                  </div>
+        
+                </div>
+              </div>
+        
+              <div class="price-row">
+                <div class="price-image">
+                  <div class="price-img price-img-two">
+                    <img src="/images/price-two.png" alt="art-image">
+                  </div>
+                </div>
+                <div class="price-inner">
+        
+                  <div class="price-wrapper price-2">
+        
+                    <div class="price-content ">
+                      <div class="price-content__texture">
+                        <picture>
+                          <source
+                            srcset="/images/price-content-texture.webp">
+                          <img
+                            src="/images/price-content-texture.jpg"
+                            width="1050" alt />
+                        </picture>
+                      </div>
+                      <div class="price-list">
+                        <h2 class="price-list__title">VIP КОМНАТА</h2>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка</p>
+                          <span>150 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка под машинку</p>
+                          <span>100 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Моделирование усов и бороды</p>
+                          <span>90 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка и моделирование бороды</p>
+                          <span>220 000</span>
+                        </div>
+                        <div class="price-list-row">
+                          <p>Мужская стрижка и королевское бритьё</p>
+                          <span>220 000</span>
+                        </div>
+                        <button class="price-list__btn"
+                          aria-label="посмотреть все услуги">ВСЕ УСЛУГИ</button>
+                      </div>
+                      <img class="price-stick" src="/images/price-stick-two.png"
+                        alt="космическая прическа">
+                    </div>
+        
+                  </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="price-line-one">
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+              <span>Первое посещение 20% скидка</span>
+            </div>
+        
+            <div class="price-line-two">
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки</span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки</span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+              <span>Ништяки </span>
+            </div>
+        
+          </div>
+        </section>
+        <section style="height: 20vh;"></section>
 
       </main>
 
