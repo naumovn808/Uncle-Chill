@@ -250,7 +250,6 @@ function animatePrice() {
   }
 }
 
-
 function animateLinePriceYellow() {
   const linePrice = document.querySelector('.price-line-one');
   const spans = linePrice.querySelectorAll('span');
@@ -270,6 +269,23 @@ function animateLinePriceYellow() {
 }
 
 animateLinePriceYellow();
+
+function animatePriceStick() {
+
+  const stickers = document.querySelectorAll('.price-stick');
+
+  if (stickers) {
+    gsap.timeline({ repeat: -1, yoyo: true, ease: 'power2.inOut' })
+      .to(stickers, { rotation: -10, duration: 0.8 })
+      .to(stickers, { rotation: 10, duration: 0.8 })
+      .to(stickers, { rotation: 0, duration: 0.8 })
+      .to(stickers, { scale: 0.95, duration: 0.8 })
+      .to(stickers, { scale: 1, duration: 0.8 });
+  }
+}
+
+animatePriceStick()
+
 
 function animateLinePriceWhite() {
   const linePrice = document.querySelector('.price-line-two');
