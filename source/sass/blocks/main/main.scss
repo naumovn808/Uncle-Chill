@@ -187,12 +187,12 @@
   object-fit: contain;
   z-index: 8;
   position: absolute;
-  left: calc(0px - max(2vw, 50px));
-  bottom: calc(0px - max(2vw, 60px));
+  left: -15%;
+  bottom: -20%;
   transform-origin: left top;
   transform: rotateX(-90deg);
-  width: calc(max(8vw, 150px));
-  height: calc(max(5vw, 60px));
+  width: max(10vw, 150px);
+  height: max(7vw, 60px);
 }
 
 .main-head__btn::before {

@@ -51,6 +51,7 @@ body.menu-open {
 
 .menu__item {
   position: relative;
+  pointer-events: auto;
 
   &::before {
     content: '';
@@ -79,6 +80,7 @@ body.menu-open {
   overflow: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  pointer-events: auto;
 }
 
 .menu::-webkit-scrollbar {

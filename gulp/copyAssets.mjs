@@ -14,13 +14,26 @@ const copySvg = () =>
   gulp.src('source/images/**/*.svg')
     .pipe(gulp.dest('build/images'));
 
+const copyFonts = () =>
+  gulp.src('source/fonts/**')
+    .pipe(gulp.dest('build/fonts'));
+
+const copyAssets = () =>
+  gulp.src([
+    'source/favicon.ico',
+    'source/manifest.json'
+  ])
+    .pipe(gulp.dest('build'));
+
 const copy = gulp.series(
   gulp.parallel(
     copyImages,
+    copyFonts,
     copySvg,
-    compileHtml
+    compileHtml,
+    copyAssets
   ),
-  cleanComponents 
+  cleanComponents
 );
 
 export { copy };

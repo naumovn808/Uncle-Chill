@@ -1,0 +1,284 @@
+.price {
+  position: relative;
+  height: 150vh;
+
+  &-inner {
+    width: 60%;
+    position: relative;
+  }
+
+  &-scroll {
+    display: flex;
+    align-items: center;
+  }
+
+  &-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    padding-right: $offset-xxxl;
+  }
+
+  &__sticky {
+    position: sticky;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-line {
+    display: none;
+  }
+
+  &-image {
+    transform: translate(0);
+    margin-left: -10em;
+    width: 40%;
+    margin-top: calc($offset * 10);
+
+    & img {
+      width: 100%;
+      object-fit: contain;
+      height: 100%;
+    }
+  }
+
+  &-img-one {
+    transform-origin: left bottom;
+  }
+
+  &-img-two {
+    transform-origin: left bottom;
+    margin-bottom: calc($offset * -2);
+  }
+
+  &-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: $offset;
+
+    &__desc {
+      position: relative;
+      margin-bottom: calc($offset * 1);
+      padding: calc($offset * 0.8);
+      font-size: 1.2em;
+      text-transform: uppercase;
+      color: $color-default-yellow;
+      border-radius: 0.5rem;
+      z-index: 1;
+      overflow: hidden;
+    }
+  }
+
+  &-title {
+    margin: 0;
+    font-size: 2em;
+    line-height: 1.4;
+    margin-bottom: $offset;
+    color: $color-default-white;
+    font-family: $ff2;
+    font-weight: $fwEB;
+    text-transform: uppercase;
+  }
+
+  &-texture img {
+    background: $color-default-black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  &-list {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+
+    &__title {
+      font-weight: 900;
+      font-size: 1.5em;
+      font-family: $ff2;
+      position: relative;
+      width: fit-content;
+      margin-top: 0;
+      margin-bottom: calc($offset * 1.2);
+      text-transform: uppercase;
+      margin-left: calc($offset * 2);
+
+      &::before {
+        content: '';
+        position: absolute;
+        background: $color-default-yellow;
+        bottom: -0.7vw;
+        left: 0;
+        width: 85%;
+        height: 15%;
+      }
+    }
+
+    &__btn {
+      border: none;
+      background-color: $color-default-yellow;
+      cursor: pointer;
+      padding: calc($offset * 1.2) calc($offset * 2.5);
+      border-radius: 0.5em;
+      margin-top: calc($offset * 2);
+      font-weight: 600;
+      color: $color-default-black;
+      font-size: max(1vw, 20px);
+      position: relative;
+      margin-left: calc($offset * 2);
+
+      &::before {
+        content: '';
+        background-image: url('/images/black-arrow.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 5%;
+        right: -22%;
+        width: calc($offset * 3);
+        height: calc($offset * 3);
+      }
+    }
+  }
+
+  &-content {
+    background: $color-default-white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: calc($offset * 2) 0;
+    border-radius: 0.5rem;
+
+    &__texture {
+      background: $color-default-white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      border-radius: calc($offset * 0.5);
+      overflow: hidden;
+
+      & picture {
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &-list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: calc($offset * 0.5) calc($offset * 2);
+    cursor: pointer;
+    transition: background-color, 0.5s;
+
+    &:hover {
+      background-color: $color-default-yellow;
+    }
+
+    & span {
+      font-family: $ff2;
+      font-weight: $fwEB;
+      font-size: max(1vw, 20px);
+      line-height: 110%;
+      color: $color-default-black;
+      padding-left: calc($offset * 5);
+      white-space: nowrap;
+    }
+
+    & p {
+      font-size: max(1vw, 20px);
+      margin: 0;
+    }
+  }
+
+  &-stick {
+    position: absolute;
+    right: -5rem;
+    bottom: 1rem;
+    width: calc($offset * 6);
+    height: calc($offset * 6);
+  }
+}
+
+.price-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.price-img-two {
+  opacity: 0;
+}
+
+.price-2 {
+  margin-top: calc($offset * 8);
+  opacity: 0;
+}
+
+.price-line-one {
+  transform: rotate(1deg);
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 200%;
+  bottom: 0;
+  background-color: $color-default-yellow;
+  padding: calc($offset / 2) 0;
+
+  & span {
+    color: $color-default-black;
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding-right: calc($offset * 2);
+  }
+}
+
+.price-line-two {
+  transform: rotate(-1.8deg);
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 200%;
+  bottom: 0;
+  background-color: $color-default-white;
+  padding: calc($offset / 2) 0;
+
+  & span {
+    color: $color-default-black;
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding-right: calc($offset * 2);
+  }
+}
