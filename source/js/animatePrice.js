@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import { animateTextLines } from "./animateTextLines";
 
 const priceSection = document.querySelector('.price');
 const price1 = document.querySelector('.price-1');
@@ -17,6 +16,11 @@ export function animatePrice() {
 
   if (!priceSection || !price1 || !price2 || !priceImageOne || !priceImageTwo) return
 
+  window.addEventListener('scroll', handleScroll)
+
+}
+
+function handleScroll() {
   gsap.to(priceImages, {
     rotation: 3,
     duration: 0.8,
@@ -45,5 +49,4 @@ export function animatePrice() {
     gsap.to(priceImageTwo, { rotate: -80, opacity: 1, duration: 1 });
     gsap.to(priceImageOne, { rotate: 0, duration: 1 })
   }
-
 }
