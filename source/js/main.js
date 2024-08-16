@@ -1,15 +1,28 @@
 import { gsap } from 'gsap';
+import animateStickers from './animateSticers';
+import { animateTextLines } from './animateTextLines';
+import { animatePrice } from './animatePrice';
+
 window.addEventListener('DOMContentLoaded', () => {
   setupInitialStyles();
-  animateBanner()
   addLoadEventListener();
-  addScrollEventListener();
-  setupMenuAnimations();
-
 });
 
-function setupInitialStyles() {
 
+function addLoadEventListener() {
+  window.addEventListener('load', () => {
+    animateHeaderLogo();
+    animateBanner();
+    setupMenuAnimations();
+    animateStickers(['.sticker', '.price-stick', 'price-stick-one', 'price-stick-two']);
+    addScrollEventListener();
+    animatePrice();
+    animateTextLines('.price-line-one');
+    animateTextLines('.price-line-two');
+  });
+}
+
+function setupInitialStyles() {
 
   gsap.set('.header__logo', {
     opacity: 0,
@@ -28,13 +41,6 @@ function setupInitialStyles() {
   gsap.set('.main-head__btn', { opacity: 0, x: '-100%' });
   gsap.set('.main-head__decor1 img', { rotation: 5 });
   gsap.set('.main-head__decor2 img', { rotation: -5 });
-}
-
-function addLoadEventListener() {
-  window.addEventListener('load', () => {
-    animateHeaderLogo();
-    animateSticker();
-  });
 }
 
 function animateHeaderLogo() {
@@ -60,8 +66,8 @@ function animateHeaderLogo() {
 function animateBanner() {
   const timeline = gsap.timeline();
   timeline
-    .fromTo('.bg', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1 })
-    .fromTo('.nav', { opacity: 0 }, { opacity: 1, duration: 1.5, delay: 0.5 })
+    .fromTo('.bg', { opacity: 0 }, { opacity: 1, duration: 2 })
+    .fromTo('.nav', { opacity: 0 }, { opacity: 1, duration: 3 })
     .fromTo('.main-head', { opacity: 0 }, { opacity: 1, duration: 1 })
     .to('.main-head__decor1 img', {
       rotation: -55,
@@ -101,18 +107,6 @@ function animateBanner() {
     })
 }
 
-function animateSticker() {
-  const sticker = document.querySelector('.sticker');
-
-  if (sticker) {
-    gsap.timeline({ repeat: -1, yoyo: true, ease: 'power2.inOut' })
-      .to(sticker, { rotation: -10, duration: 0.8 })
-      .to(sticker, { rotation: 10, duration: 0.8 })
-      .to(sticker, { rotation: 0, duration: 0.8 })
-      .to(sticker, { scale: 0.95, duration: 0.8 })
-      .to(sticker, { scale: 1, duration: 0.8 });
-  }
-}
 
 function addScrollEventListener() {
   let lastScrollTop = 0;
@@ -207,88 +201,57 @@ if (menu && navButton) {
 }
 
 
-const priceSection = document.querySelector('.price');
-const price1 = document.querySelector('.price-1');
-const price2 = document.querySelector('.price-2');
-const priceImageOne = document.querySelector('.price-img-one');
-const priceImageTwo = document.querySelector('.price-img-two');
 
-gsap.set('.price-inner', { opacity: 0 });
-gsap.set(priceImageOne, { rotate: -80, duration: 0 });
-gsap.set(priceImageTwo, { rotate: -80, opacity: 0, });
+function animateAboutImages() {
+  const section = document.querySelector('.about');
+  const images = document.querySelectorAll('.about-img-1, .about-img-2, .about-img-3, .about-img-4');
 
-const priceImages = document.querySelectorAll('.price-image');
-gsap.to(priceImages, {
-  rotation: 3,
-  duration: 0.8,
-  repeat: -1,
-  yoyo: true,
-  ease: 'power2.inOut'
-});
+  function handleScroll() {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const windowHeight = window.innerHeight;
 
-function animatePrice() {
+    let currentValue = document.documentElement.scrollTop + windowHeight - sectionTop;
 
-  gsap.set(priceImages, { transformOrigin: 'left bottom' });
-  const sectionTop = priceSection.getBoundingClientRect().top + priceSection.offsetHeight / 5;
+    let progress = currentValue / sectionHeight;
+    progress = Math.max(0, Math.min(1, progress));
 
-  if (priceSection.offsetTop * 0.7 - document.documentElement.scrollTop) {
-    gsap.to('.price-inner', { opacity: 1, duration: 3, delay: 2 });
+
+    if (document.documentElement.scrollTop + window.innerHeight > sectionTop) {
+      gsap.to('.about-head', { opacity: 1, duration: 2, y: '0' });
+
+      gsap.to('.about__decor', {
+        x: (1 - progress) * 200 + '%',
+        rotate: 45 * (1 - progress),
+        duration: 0,
+        overwrite: 'auto'
+      });
+
+      images.forEach((image, index) => {
+        let startRotation = index < 2 ? -90 : 90;
+        let startTranslateX = index % 2 === 0 ? -50 : -100;
+
+        gsap.to(image, {
+          rotation: startRotation + progress * -startRotation,
+          x: startTranslateX + progress * -startTranslateX + '%',
+          duration: 0,
+          overwrite: 'auto'
+        });
+      });
+    } else {
+
+      gsap.to('.about-head', { opacity: 0, y: '50%' })
+    }
+
   }
 
-  if (sectionTop < 0) {
-    gsap.to(price1, { x: '200%', duration: 0.5 });
-    gsap.to(price2, { x: '0%', duration: 0.5, opacity: 1 });
-    gsap.to(priceImageTwo, { rotate: 0, duration: 1 });
-    gsap.to(priceImageOne, { rotate: -80, duration: 1 });
-  }
-
-  if (sectionTop > 0) {
-    gsap.to(price1, { x: '0%', duration: 0.5 });
-    gsap.to(price2, { x: '200%', duration: 0.5, opacity: 0 });
-    gsap.to(priceImageTwo, { rotate: -80, opacity: 1, duration: 1 });
-    gsap.to(priceImageOne, { rotate: 0, duration: 1 })
-  }
+  window.addEventListener('scroll', handleScroll);
 }
 
-function animateLinePriceYellow() {
-  const linePrice = document.querySelector('.price-line-one');
-  const spans = linePrice.querySelectorAll('span');
+animateAboutImages();
 
-  spans.forEach(span => {
-    linePrice.appendChild(span.cloneNode(true));
-  });
-
-  const duration = 10;
-
-  gsap.to(linePrice, {
-    xPercent: -50,
-    duration: duration,
-    ease: 'linear',
-    repeat: -1
-  });
-}
-
-animateLinePriceYellow();
-
-function animatePriceStick() {
-
-  const stickers = document.querySelectorAll('.price-stick');
-
-  if (stickers) {
-    gsap.timeline({ repeat: -1, yoyo: true, ease: 'power2.inOut' })
-      .to(stickers, { rotation: -10, duration: 0.8 })
-      .to(stickers, { rotation: 10, duration: 0.8 })
-      .to(stickers, { rotation: 0, duration: 0.8 })
-      .to(stickers, { scale: 0.95, duration: 0.8 })
-      .to(stickers, { scale: 1, duration: 0.8 });
-  }
-}
-
-animatePriceStick()
-
-
-function animateLinePriceWhite() {
-  const linePrice = document.querySelector('.price-line-two');
+function animateAboutLine() {
+  const linePrice = document.querySelector('.about__line');
   const spans = linePrice.querySelectorAll('span');
 
   spans.forEach(span => {
@@ -305,5 +268,4 @@ function animateLinePriceWhite() {
   });
 }
 
-animateLinePriceWhite();
-
+animateAboutLine();
