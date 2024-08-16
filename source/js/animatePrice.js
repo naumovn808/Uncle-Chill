@@ -14,13 +14,6 @@ gsap.set(priceImages, { transformOrigin: 'left bottom' });
 
 export function animatePrice() {
 
-  if (!priceSection || !price1 || !price2 || !priceImageOne || !priceImageTwo) return
-
-  window.addEventListener('scroll', handleScroll)
-
-}
-
-function handleScroll() {
   gsap.to(priceImages, {
     rotation: 3,
     duration: 0.8,
@@ -29,11 +22,20 @@ function handleScroll() {
     ease: 'power2.inOut'
   });
 
+
+  if (!priceSection || !price1 || !price2 || !priceImageOne || !priceImageTwo) return
+
+  window.addEventListener('scroll', handleScroll)
+
+}
+
+function handleScroll() {
+
+
   const sectionTop = priceSection.getBoundingClientRect().top + priceSection.offsetHeight / 5;
 
-  if (priceSection.offsetTop * 0.7 - document.documentElement.scrollTop) {
-    gsap.to('.price-inner', { opacity: 1, duration: 3, delay: 2 });
-
+  if (priceSection.offsetTop * 0.8 - document.documentElement.scrollTop > 0) {
+    gsap.to('.price-inner', { opacity: 1, delay: 1, duration: 3, y: '-15%' });
   }
 
   if (sectionTop < 0) {

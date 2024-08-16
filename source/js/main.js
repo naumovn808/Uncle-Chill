@@ -13,14 +13,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function addLoadEventListener() {
   window.addEventListener('load', () => {
-    animateHeaderLogo();
-    animateMainHead();
-    navMenu();
-    animateStickers(['.sticker', '.price-stick-one', '.price-stick-two']);
-    animateAdvantages();
-    animatePrice();
-    animateTextLines('.price-line-one');
-    animateTextLines('.price-line-two');
-    animateAbout();
+    // animateHeaderLogo();
+    // animateMainHead();
+    // navMenu();
+    // animateStickers(['.sticker', '.price-stick-one', '.price-stick-two']);
+    // animateAdvantages();
+    // animatePrice();
+    // animateTextLines('.price-line-one');
+    // animateTextLines('.price-line-two');
+    // animateAbout();
   });
 }

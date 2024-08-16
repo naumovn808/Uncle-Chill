@@ -1,15 +1,13 @@
 import gsap from "gsap";
 
 export function animateAdvantages() {
-
   window.addEventListener('scroll', handleScroll);
-
 }
 
-function handleScroll() {
+let lastScrollTop = 0;
+let advantagesAnimatedIn = false;
 
-  let lastScrollTop = 0;
-  let advantagesAnimatedIn = false;
+function handleScroll() {
 
   if (!document.querySelector('.nav__btn').classList.contains('active')) {
 
@@ -20,7 +18,7 @@ function handleScroll() {
     gsap.to('.header', { opacity: headerOpacity, duration: 0.5, ease: 'power2.out' });
     gsap.to('.header-bg', { height: headerBgHeight, duration: 0.5, ease: 'power2.out' });
 
-    const advantagesOffsetTop = document.querySelector('.advantages').offsetTop * 0.2;
+    const advantagesOffsetTop = document.querySelector('.advantages').offsetTop - window.innerHeight * 0.5;
 
     if (scrollTop > advantagesOffsetTop && !advantagesAnimatedIn) {
       gsap.to('.advantages', { y: '-25vh', duration: 1, ease: 'power2.out' });
@@ -39,7 +37,7 @@ function handleScroll() {
       gsap.to('.advantages', { y: '0' });
     }
 
-    if (scrollTop < advantagesOffsetTop * 0.5 && advantagesAnimatedIn) {
+    if (scrollTop < advantagesOffsetTop && advantagesAnimatedIn) {
       advantagesAnimatedIn = false;
     }
 

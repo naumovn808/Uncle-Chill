@@ -15,7 +15,6 @@ export function animateMainHead() {
   timeline
     .fromTo('.bg', { opacity: 0 }, { opacity: 1, duration: 2 })
     .fromTo('.nav', { opacity: 0 }, { opacity: 1, duration: 3 })
-    .fromTo('.main-head', { opacity: 0 }, { opacity: 1, duration: 1 })
     .to('.main-head__decor1 img', {
       rotation: -55,
     })
@@ -29,7 +28,7 @@ export function animateMainHead() {
       duration: 0.5,
       ease: 'power2.out'
     })
-    .fromTo('.main-head__image-bg', { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' })
+    .fromTo('.main-head__image-bg', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1,  ease: 'power2.out' })
     .fromTo('.main-head__image-over', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'power2.out' })
     .fromTo('.sticker', { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.inOut' })
     .to('.art', { rotateX: -20, rotate: -20, duration: 1, ease: 'power2.out' })
